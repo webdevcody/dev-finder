@@ -18,8 +18,6 @@ import Link from "next/link";
 function AccountDropdown() {
   const session = useSession();
 
-  const isLoggedIn = !!session.data;
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -33,21 +31,22 @@ function AccountDropdown() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        {isLoggedIn ? (
-          <DropdownMenuItem onClick={() => signOut()}>
-            <LogOutIcon className="mr-2" /> Sign Out
-          </DropdownMenuItem>
-        ) : (
-          <DropdownMenuItem onClick={() => signIn("google")}>
-            <LogInIcon className="mr-2" /> Sign In
-          </DropdownMenuItem>
-        )}
+        <DropdownMenuItem
+          onClick={() =>
+            signOut({
+              callbackUrl: "/",
+            })
+          }
+        >
+          <LogOutIcon className="mr-2" /> Sign Out
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
 export function Header() {
+  const session = useSession();
   return (
     <header className="bg-gray-100 py-2 dark:bg-gray-900 container mx-auto">
       <div className="flex justify-between items-center">
@@ -65,7 +64,12 @@ export function Header() {
         </Link>
 
         <div className="flex items-center gap-4">
-          <AccountDropdown />
+          {session.data && <AccountDropdown />}
+          {!session.data && (
+            <Button onClick={() => signIn()} variant="link">
+              <LogInIcon className="mr-2" /> Sign In
+            </Button>
+          )}
           <ModeToggle />
         </div>
       </div>
