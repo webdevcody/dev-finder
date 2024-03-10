@@ -21,7 +21,7 @@ const formSchema = z.object({
   name: z.string().min(1).max(50),
   description: z.string().min(1).max(250),
   githubRepo: z.string().min(1).max(50),
-  language: z.string().min(1).max(50),
+  tags: z.string().min(1).max(50),
 });
 
 export function CreateRoomForm() {
@@ -33,7 +33,7 @@ export function CreateRoomForm() {
       name: "",
       description: "",
       githubRepo: "",
-      language: "",
+      tags: "",
     },
   });
 
@@ -53,7 +53,7 @@ export function CreateRoomForm() {
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="Dev Finder Is Awesome" />
               </FormControl>
               <FormDescription>This is your public room name.</FormDescription>
               <FormMessage />
@@ -68,7 +68,10 @@ export function CreateRoomForm() {
             <FormItem>
               <FormLabel>Description</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="Im working on a side project, come join me"
+                />
               </FormControl>
               <FormDescription>
                 Please describe what you are be coding on
@@ -85,7 +88,10 @@ export function CreateRoomForm() {
             <FormItem>
               <FormLabel>Github Repo</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input
+                  {...field}
+                  placeholder="https://github.com/webdevcody/dev-finder"
+                />
               </FormControl>
               <FormDescription>
                 Please put a link to the project you are working on
@@ -97,15 +103,16 @@ export function CreateRoomForm() {
 
         <FormField
           control={form.control}
-          name="language"
+          name="tags"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Primary Programming Language</FormLabel>
+              <FormLabel>Tags</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="typescript, nextjs, tailwind" />
               </FormControl>
               <FormDescription>
-                List the primary programming language you are working with
+                List your programming languages, frameworks, libraries so people
+                can find you content
               </FormDescription>
               <FormMessage />
             </FormItem>
