@@ -13,7 +13,7 @@ export function TagsList({ tags }: { tags: string[] }) {
           className={cn(badgeVariants())}
           key={tag}
           onClick={() => {
-            router.push(`/?search=${tag}`);
+            router.push(`/browse?search=${tag}`);
           }}
         >
           {tag}
