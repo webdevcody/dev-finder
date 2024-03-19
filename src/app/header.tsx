@@ -102,13 +102,13 @@ export function Header() {
           href="/"
           className="flex gap-2 items-center text-xl hover:underline"
         >
-          <Image
+{/*           <Image
             src="/icon.png"
             width="60"
             height="60"
             alt="the application icon of a magnifying glass"
-          />
-          DevFinder
+          /> */}
+          CODEWITHME.E
         </Link>
 
         <nav className="flex gap-8">
